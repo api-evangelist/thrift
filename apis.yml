@@ -1,0 +1,47 @@
+aid: thrift
+name: Apache Thrift
+description: >-
+  Apache Thrift is a cross-language RPC framework for building scalable
+  services with a code generation engine that produces client and server
+  code for multiple programming languages from a simple interface
+  definition language.
+type: Index
+image: https://kinlane-productions.s3.amazonaws.com/apis-json/apis-json-logo.jpg
+tags:
+  - SDKs
+  - RPC
+  - Code Generation
+  - Thrift
+url: >-
+  https://raw.githubusercontent.com/api-evangelist/thrift/refs/heads/main/apis.yml
+created: '2026-03-27'
+modified: '2026-03-27'
+specificationVersion: '0.19'
+apis:
+  - aid: thrift:thrift
+    name: Apache Thrift
+    description: >-
+      Apache Thrift is a cross-language RPC framework for building scalable
+      services with a code generation engine that produces client and server
+      code for multiple programming languages from a simple interface
+      definition language.
+    humanURL: https://thrift.apache.org/
+    tags:
+      - SDKs
+      - RPC
+      - Code Generation
+    properties:
+      - type: Documentation
+        url: https://thrift.apache.org/docs/
+      - type: Getting Started
+        url: https://thrift.apache.org/tutorial/
+common:
+  - type: Website
+    url: https://thrift.apache.org/
+  - type: Documentation
+    url: https://thrift.apache.org/docs/
+  - type: GitHub Organization
+    url: https://github.com/apache/thrift
+maintainers:
+  - FN: Kin Lane
+    email: kin@apievangelist.com
