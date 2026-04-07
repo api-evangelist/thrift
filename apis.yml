@@ -8,9 +8,9 @@ description: >-
 type: Index
 image: https://kinlane-productions.s3.amazonaws.com/apis-json/apis-json-logo.jpg
 tags:
-  - SDKs
-  - RPC
   - Code Generation
+  - RPC
+  - SDKs
   - Thrift
 url: >-
   https://raw.githubusercontent.com/api-evangelist/thrift/refs/heads/main/apis.yml
@@ -27,9 +27,9 @@ apis:
       definition language.
     humanURL: https://thrift.apache.org/
     tags:
-      - SDKs
-      - RPC
       - Code Generation
+      - RPC
+      - SDKs
     properties:
       - type: Documentation
         url: https://thrift.apache.org/docs/
