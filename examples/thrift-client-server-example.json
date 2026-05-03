@@ -1,0 +1,90 @@
+{
+  "title": "Apache Thrift Client/Server Configuration Example",
+  "description": "Example showing how to configure and start a Thrift server and client with transport and protocol selections",
+  "examples": [
+    {
+      "name": "Java Server Setup",
+      "description": "Setting up a non-blocking Thrift server in Java with compact protocol",
+      "language": "java",
+      "transport": "TFramedTransport",
+      "protocol": "TCompactProtocol",
+      "serverType": "TNonblockingServer",
+      "port": 9090,
+      "code_pattern": {
+        "handler": "CalculatorHandler handler = new CalculatorHandler()",
+        "processor": "Calculator.Processor processor = new Calculator.Processor(handler)",
+        "transport": "TNonblockingServerSocket transport = new TNonblockingServerSocket(9090)",
+        "server": "TNonblockingServer server = new TNonblockingServer(new TNonblockingServer.Args(transport).processor(processor))",
+        "start": "server.serve()"
+      }
+    },
+    {
+      "name": "Python Client Setup",
+      "description": "Connecting to a Thrift service from Python using binary protocol over TCP",
+      "language": "python",
+      "transport": "TSocket + TBufferedTransport",
+      "protocol": "TBinaryProtocol",
+      "host": "localhost",
+      "port": 9090,
+      "code_pattern": {
+        "socket": "transport = TSocket.TSocket('localhost', 9090)",
+        "buffered": "transport = TTransport.TBufferedTransport(transport)",
+        "protocol": "protocol = TBinaryProtocol.TBinaryProtocol(transport)",
+        "client": "client = Calculator.Client(protocol)",
+        "open": "transport.open()",
+        "call": "result = client.add(1, 1)"
+      }
+    },
+    {
+      "name": "Go Service Definition",
+      "description": "Service implementation pattern in Go generated from Thrift IDL",
+      "language": "go",
+      "transport": "TSocket",
+      "protocol": "TBinaryProtocol",
+      "code_pattern": {
+        "handler": "type CalculatorHandler struct{}",
+        "ping": "func (p *CalculatorHandler) Ping(ctx context.Context) (err error) { return nil }",
+        "add": "func (p *CalculatorHandler) Add(ctx context.Context, num1 int32, num2 int32) (int32, error) { return num1 + num2, nil }"
+      }
+    },
+    {
+      "name": "Node.js Client Setup",
+      "description": "Connecting to a Thrift service from Node.js",
+      "language": "javascript",
+      "transport": "TFramedTransport",
+      "protocol": "TCompactProtocol",
+      "host": "localhost",
+      "port": 9090,
+      "code_pattern": {
+        "require": "const thrift = require('thrift'); const Calculator = require('./gen-nodejs/Calculator');",
+        "connect": "const connection = thrift.createConnection('localhost', 9090, { transport: thrift.TFramedTransport, protocol: thrift.TCompactProtocol })",
+        "client": "const client = thrift.createClient(Calculator, connection)",
+        "call": "client.add(1, 1, function(err, response) { console.log(response); })"
+      }
+    }
+  ],
+  "supported_languages": [
+    "C", "C++", "C#", "Common Lisp", "D", "Dart", "Delphi", "Erlang", "Go",
+    "Haxe", "Java", "JavaScript", "Lua", "Node.js", ".NET Standard",
+    "OCaml", "Perl", "PHP", "Python", "Ruby", "Rust", "Smalltalk", "Swift"
+  ],
+  "protocol_options": [
+    { "name": "TBinaryProtocol", "description": "Default binary protocol; fast but not compact" },
+    { "name": "TCompactProtocol", "description": "Compact binary with variable-length integers; recommended" },
+    { "name": "TJSONProtocol", "description": "JSON serialization; human-readable, web-compatible" },
+    { "name": "TSimpleJSONProtocol", "description": "Write-only simplified JSON; not deserializable" }
+  ],
+  "transport_options": [
+    { "name": "TSocket", "description": "Blocking TCP socket; simplest transport" },
+    { "name": "TFramedTransport", "description": "4-byte length-prefixed framing; required for non-blocking servers" },
+    { "name": "TBufferedTransport", "description": "Buffered I/O wrapping another transport" },
+    { "name": "THttpClient / THttpServer", "description": "HTTP/1.1 transport for web-accessible services" },
+    { "name": "TZlibTransport", "description": "zlib compression wrapper" }
+  ],
+  "server_options": [
+    { "name": "TSimpleServer", "description": "Single-threaded; testing only" },
+    { "name": "TThreadPoolServer", "description": "Thread pool; general-purpose production server" },
+    { "name": "TNonblockingServer", "description": "Non-blocking I/O; requires TFramedTransport" },
+    { "name": "TThreadedSelectorServer", "description": "Multi-selector non-blocking; recommended for high concurrency" }
+  ]
+}

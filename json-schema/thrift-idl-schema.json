@@ -1,0 +1,280 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://thrift.apache.org/schema/idl",
+  "title": "Apache Thrift IDL Definition",
+  "description": "JSON representation of an Apache Thrift Interface Definition Language (IDL) file, capturing all type and service definitions",
+  "type": "object",
+  "properties": {
+    "namespace": {
+      "type": "object",
+      "description": "Language-specific namespace declarations mapping language names to namespace identifiers",
+      "additionalProperties": {
+        "type": "string"
+      },
+      "examples": [
+        { "java": "com.example.service", "py": "example.service", "go": "example/service" }
+      ]
+    },
+    "includes": {
+      "type": "array",
+      "description": "List of included Thrift IDL files",
+      "items": {
+        "type": "string"
+      }
+    },
+    "constants": {
+      "type": "array",
+      "description": "Constant value declarations",
+      "items": { "$ref": "#/$defs/ThriftConst" }
+    },
+    "typedefs": {
+      "type": "array",
+      "description": "Typedef alias declarations",
+      "items": { "$ref": "#/$defs/ThriftTypedef" }
+    },
+    "enums": {
+      "type": "array",
+      "description": "Enumeration type definitions",
+      "items": { "$ref": "#/$defs/ThriftEnum" }
+    },
+    "structs": {
+      "type": "array",
+      "description": "Struct type definitions",
+      "items": { "$ref": "#/$defs/ThriftStruct" }
+    },
+    "unions": {
+      "type": "array",
+      "description": "Union type definitions",
+      "items": { "$ref": "#/$defs/ThriftUnion" }
+    },
+    "exceptions": {
+      "type": "array",
+      "description": "Exception type definitions",
+      "items": { "$ref": "#/$defs/ThriftException" }
+    },
+    "services": {
+      "type": "array",
+      "description": "Service interface definitions",
+      "items": { "$ref": "#/$defs/ThriftService" }
+    }
+  },
+  "$defs": {
+    "ThriftBaseType": {
+      "type": "string",
+      "enum": ["bool", "byte", "i8", "i16", "i32", "i64", "double", "string", "binary", "uuid"],
+      "description": "A Thrift primitive base type"
+    },
+    "ThriftContainerType": {
+      "type": "object",
+      "oneOf": [
+        {
+          "properties": {
+            "list": { "$ref": "#/$defs/ThriftFieldType" }
+          },
+          "required": ["list"],
+          "additionalProperties": false
+        },
+        {
+          "properties": {
+            "set": { "$ref": "#/$defs/ThriftFieldType" }
+          },
+          "required": ["set"],
+          "additionalProperties": false
+        },
+        {
+          "properties": {
+            "map": {
+              "type": "object",
+              "properties": {
+                "key": { "$ref": "#/$defs/ThriftFieldType" },
+                "value": { "$ref": "#/$defs/ThriftFieldType" }
+              },
+              "required": ["key", "value"]
+            }
+          },
+          "required": ["map"],
+          "additionalProperties": false
+        }
+      ]
+    },
+    "ThriftFieldType": {
+      "oneOf": [
+        { "$ref": "#/$defs/ThriftBaseType" },
+        { "$ref": "#/$defs/ThriftContainerType" },
+        {
+          "type": "string",
+          "description": "Reference to a named type (struct, enum, typedef, etc.)"
+        }
+      ]
+    },
+    "ThriftRequiredness": {
+      "type": "string",
+      "enum": ["required", "optional", "default"],
+      "default": "default",
+      "description": "Field requiredness qualifier"
+    },
+    "ThriftField": {
+      "type": "object",
+      "description": "A field within a struct, union, or exception",
+      "required": ["name", "type"],
+      "properties": {
+        "id": {
+          "type": "integer",
+          "description": "Numeric field identifier (recommended for versioning)"
+        },
+        "requiredness": { "$ref": "#/$defs/ThriftRequiredness" },
+        "type": { "$ref": "#/$defs/ThriftFieldType" },
+        "name": {
+          "type": "string",
+          "description": "Field name"
+        },
+        "default": {
+          "description": "Default value for the field"
+        },
+        "annotations": {
+          "type": "object",
+          "additionalProperties": { "type": "string" }
+        },
+        "comment": {
+          "type": "string",
+          "description": "Documentation comment"
+        }
+      }
+    },
+    "ThriftStruct": {
+      "type": "object",
+      "description": "A Thrift struct type definition",
+      "required": ["name", "fields"],
+      "properties": {
+        "name": { "type": "string" },
+        "fields": {
+          "type": "array",
+          "items": { "$ref": "#/$defs/ThriftField" }
+        },
+        "annotations": {
+          "type": "object",
+          "additionalProperties": { "type": "string" }
+        },
+        "comment": { "type": "string" }
+      }
+    },
+    "ThriftUnion": {
+      "type": "object",
+      "description": "A Thrift union type; exactly one field may be set at a time",
+      "required": ["name", "fields"],
+      "properties": {
+        "name": { "type": "string" },
+        "fields": {
+          "type": "array",
+          "items": { "$ref": "#/$defs/ThriftField" }
+        },
+        "comment": { "type": "string" }
+      }
+    },
+    "ThriftException": {
+      "type": "object",
+      "description": "A Thrift exception type; integrates with native language exception handling",
+      "required": ["name", "fields"],
+      "properties": {
+        "name": { "type": "string" },
+        "fields": {
+          "type": "array",
+          "items": { "$ref": "#/$defs/ThriftField" }
+        },
+        "comment": { "type": "string" }
+      }
+    },
+    "ThriftEnum": {
+      "type": "object",
+      "description": "A named enumeration type",
+      "required": ["name", "values"],
+      "properties": {
+        "name": { "type": "string" },
+        "values": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "required": ["name"],
+            "properties": {
+              "name": { "type": "string" },
+              "value": { "type": "integer" },
+              "comment": { "type": "string" }
+            }
+          }
+        },
+        "comment": { "type": "string" }
+      }
+    },
+    "ThriftConst": {
+      "type": "object",
+      "description": "A constant value declaration",
+      "required": ["type", "name", "value"],
+      "properties": {
+        "type": { "$ref": "#/$defs/ThriftFieldType" },
+        "name": { "type": "string" },
+        "value": {}
+      }
+    },
+    "ThriftTypedef": {
+      "type": "object",
+      "description": "A type alias declaration",
+      "required": ["type", "alias"],
+      "properties": {
+        "type": { "$ref": "#/$defs/ThriftFieldType" },
+        "alias": { "type": "string" },
+        "comment": { "type": "string" }
+      }
+    },
+    "ThriftFunction": {
+      "type": "object",
+      "description": "A function definition within a service",
+      "required": ["name", "returnType"],
+      "properties": {
+        "oneway": {
+          "type": "boolean",
+          "default": false,
+          "description": "Fire-and-forget; client does not wait for response"
+        },
+        "returnType": {
+          "oneOf": [
+            { "$ref": "#/$defs/ThriftFieldType" },
+            { "type": "string", "const": "void" }
+          ],
+          "description": "Return type of the function, or void"
+        },
+        "name": { "type": "string" },
+        "parameters": {
+          "type": "array",
+          "items": { "$ref": "#/$defs/ThriftField" }
+        },
+        "throws": {
+          "type": "array",
+          "items": { "$ref": "#/$defs/ThriftField" },
+          "description": "Exception types this function may throw"
+        },
+        "comment": { "type": "string" }
+      }
+    },
+    "ThriftService": {
+      "type": "object",
+      "description": "A Thrift service interface definition",
+      "required": ["name", "functions"],
+      "properties": {
+        "name": { "type": "string" },
+        "extends": {
+          "type": "string",
+          "description": "Name of the parent service this service extends"
+        },
+        "functions": {
+          "type": "array",
+          "items": { "$ref": "#/$defs/ThriftFunction" }
+        },
+        "annotations": {
+          "type": "object",
+          "additionalProperties": { "type": "string" }
+        },
+        "comment": { "type": "string" }
+      }
+    }
+  }
+}

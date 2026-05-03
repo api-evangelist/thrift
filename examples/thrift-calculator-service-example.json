@@ -1,0 +1,109 @@
+{
+  "title": "Apache Thrift Calculator Service - IDL Example",
+  "description": "A complete example of the classic Apache Thrift tutorial Calculator service, showing IDL constructs converted to JSON representation",
+  "source": "https://github.com/apache/thrift/blob/master/tutorial/tutorial.thrift",
+  "idl_source": "tutorial.thrift",
+  "namespace": {
+    "cpp": "tutorial",
+    "d": "tutorial",
+    "dart": "tutorial",
+    "java": "tutorial",
+    "php": "tutorial",
+    "perl": "tutorial",
+    "haxe": "tutorial",
+    "netstd": "tutorial"
+  },
+  "includes": [
+    "shared.thrift"
+  ],
+  "constants": [
+    {
+      "type": "i32",
+      "name": "INT32CONSTANT",
+      "value": 9853
+    },
+    {
+      "type": "map",
+      "typeArgs": { "key": "string", "value": "string" },
+      "name": "MAPCONSTANT",
+      "value": { "hello": "world", "goodnight": "moon" }
+    }
+  ],
+  "enums": [
+    {
+      "name": "Operation",
+      "comment": "Mathematical operations supported by the calculator service",
+      "values": [
+        { "name": "ADD", "value": 1 },
+        { "name": "SUBTRACT", "value": 2 },
+        { "name": "MULTIPLY", "value": 3 },
+        { "name": "DIVIDE", "value": 4 }
+      ]
+    }
+  ],
+  "structs": [
+    {
+      "name": "Work",
+      "comment": "A work item representing a single calculation request",
+      "fields": [
+        { "id": 1, "type": "i32", "name": "num1", "default": 0, "comment": "First operand" },
+        { "id": 2, "type": "i32", "name": "num2", "comment": "Second operand" },
+        { "id": 3, "type": "Operation", "name": "op", "comment": "The operation to perform" },
+        { "id": 4, "type": "string", "name": "comment", "requiredness": "optional", "comment": "Optional comment for this calculation" }
+      ]
+    }
+  ],
+  "exceptions": [
+    {
+      "name": "InvalidOperation",
+      "comment": "Exception thrown when an invalid or illegal operation is requested",
+      "fields": [
+        { "id": 1, "type": "i32", "name": "whatOp" },
+        { "id": 2, "type": "string", "name": "why" }
+      ]
+    }
+  ],
+  "services": [
+    {
+      "name": "Calculator",
+      "comment": "A calculator service extending the shared SharedService",
+      "extends": "shared.SharedService",
+      "functions": [
+        {
+          "oneway": true,
+          "returnType": "void",
+          "name": "ping",
+          "parameters": [],
+          "comment": "A method definition without a return type means void; one-way function sends and does not wait"
+        },
+        {
+          "returnType": "i32",
+          "name": "add",
+          "parameters": [
+            { "id": 1, "type": "i32", "name": "num1" },
+            { "id": 2, "type": "i32", "name": "num2" }
+          ],
+          "comment": "Adds two integers and returns the result"
+        },
+        {
+          "returnType": "i32",
+          "name": "calculate",
+          "parameters": [
+            { "id": 1, "type": "i32", "name": "logid", "comment": "Log entry ID for audit purposes" },
+            { "id": 2, "type": "Work", "name": "w", "comment": "The work item describing the calculation" }
+          ],
+          "throws": [
+            { "id": 1, "type": "InvalidOperation", "name": "ouch" }
+          ],
+          "comment": "Performs the specified calculation; throws InvalidOperation if the operation is illegal"
+        },
+        {
+          "returnType": "void",
+          "name": "zip",
+          "parameters": [],
+          "comment": "This method has a bug in the parameters; it should have been an exception in thrift IDL"
+        }
+      ]
+    }
+  ]
+}

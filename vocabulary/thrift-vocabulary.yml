@@ -1,0 +1,214 @@
+name: Apache Thrift Vocabulary
+description: >-
+  Normative vocabulary for the Apache Thrift cross-language RPC framework,
+  covering the Interface Definition Language (IDL), type system, transport
+  layer, protocol layer, and service definition concepts.
+version: 0.23.0
+created: '2026-05-03'
+modified: '2026-05-03'
+tags:
+  - Apache
+  - Code Generation
+  - Cross Language
+  - IDL
+  - RPC
+  - Thrift
+
+categories:
+  - name: IDL Base Types
+    description: Primitive types available in the Thrift Interface Definition Language
+    terms:
+      - term: bool
+        definition: A boolean value (true or false)
+        type: BaseType
+      - term: byte
+        definition: An 8-bit signed integer
+        type: BaseType
+      - term: i8
+        definition: An 8-bit signed integer (alias for byte)
+        type: BaseType
+      - term: i16
+        definition: A 16-bit signed integer
+        type: BaseType
+      - term: i32
+        definition: A 32-bit signed integer
+        type: BaseType
+      - term: i64
+        definition: A 64-bit signed integer
+        type: BaseType
+      - term: double
+        definition: A 64-bit IEEE 754 floating point number
+        type: BaseType
+      - term: string
+        definition: A UTF-8 encoded text string
+        type: BaseType
+      - term: binary
+        definition: A raw byte sequence (unencoded byte string)
+        type: BaseType
+      - term: uuid
+        definition: A 16-byte universally unique identifier (UUID)
+        type: BaseType
+
+  - name: IDL Container Types
+    description: Collection and container types in the Thrift IDL
+    terms:
+      - term: list
+        definition: An ordered collection of elements of a single type; maps to STL vector, Java ArrayList, or scripting language list
+        syntax: "list<FieldType>"
+        type: ContainerType
+      - term: set
+        definition: An unordered collection of unique elements of a single type; maps to STL set, Java HashSet, or scripting language set
+        syntax: "set<FieldType>"
+        type: ContainerType
+      - term: map
+        definition: A key-value collection mapping one type to another; maps to STL map, Java HashMap, or scripting language dictionary
+        syntax: "map<FieldType, FieldType>"
+        type: ContainerType
+
+  - name: IDL Definition Constructs
+    description: Structural definition constructs for Thrift IDL files
+    terms:
+      - term: struct
+        definition: A composite type grouping named fields with optional field identifiers and requiredness qualifiers; the primary unit of data modeling in Thrift IDL
+        type: DefinitionConstruct
+      - term: union
+        definition: A type that holds exactly one field from a defined set at any time; similar to C++ union semantics but with type safety
+        type: DefinitionConstruct
+      - term: exception
+        definition: A special struct type representing error conditions; integrates with native exception handling in each target language
+        type: DefinitionConstruct
+      - term: service
+        definition: A functional interface definition that declares RPC methods; may extend another service to inherit its methods
+        type: DefinitionConstruct
+      - term: enum
+        definition: A named set of integer constants; values are automatically assigned starting from 0 unless explicitly specified
+        type: DefinitionConstruct
+      - term: typedef
+        definition: An alias that creates an alternate name for an existing type; useful for readability and documentation
+        type: DefinitionConstruct
+      - term: const
+        definition: A constant value declaration with a type and identifier; allows reuse of named constants across IDL files
+        type: DefinitionConstruct
+      - term: namespace
+        definition: A namespace directive scoping generated code to a language-specific package, module, or namespace
+        type: DefinitionConstruct
+      - term: include
+        definition: An include directive that imports type definitions from another Thrift IDL file
+        type: DefinitionConstruct
+
+  - name: Field Requiredness
+    description: Requiredness qualifiers for struct fields
+    terms:
+      - term: required
+        definition: The field MUST be present in the serialized data; absence causes an exception; limits soft versioning options
+        type: FieldQualifier
+      - term: optional
+        definition: The field MAY be omitted from serialized data; presence tracked via isset mechanism in generated code
+        type: FieldQualifier
+      - term: default
+        definition: Default requiredness (no qualifier); field is written if set and read if present; the recommended approach for versioning compatibility
+        type: FieldQualifier
+
+  - name: Function Modifiers
+    description: Modifiers for service function declarations
+    terms:
+      - term: oneway
+        definition: A fire-and-forget function modifier; the client does not wait for a response; useful for asynchronous notifications
+        type: FunctionModifier
+      - term: throws
+        definition: A function clause listing exception types that may be returned by the service method
+        type: FunctionClause
+      - term: void
+        definition: A return type indicating the function returns no value
+        type: ReturnType
+
+  - name: Transport Layer
+    description: Transport abstractions for moving bytes between client and server
+    terms:
+      - term: TSocket
+        definition: Blocking TCP socket transport; the most common transport for synchronous client/server communication
+        type: Transport
+      - term: TFramedTransport
+        definition: Framing transport that wraps messages with a 4-byte length prefix; required for non-blocking servers
+        type: Transport
+      - term: TBufferedTransport
+        definition: Buffered transport that improves performance by batching reads and writes
+        type: Transport
+      - term: TFileTransport
+        definition: Transport that writes to or reads from a file; useful for logging and replay
+        type: Transport
+      - term: TMemoryBuffer
+        definition: In-memory transport for testing and serialization scenarios
+        type: Transport
+      - term: TZlibTransport
+        definition: Compression transport that wraps another transport with zlib compression
+        type: Transport
+      - term: THttpClient
+        definition: HTTP transport for clients connecting to Thrift services over HTTP/1.1
+        type: Transport
+      - term: THttpServer
+        definition: HTTP server transport for hosting Thrift services over HTTP/1.1
+        type: Transport
+
+  - name: Protocol Layer
+    description: Serialization protocols for encoding Thrift data structures
+    terms:
+      - term: TBinaryProtocol
+        definition: Default binary serialization protocol; compact and fast but not human-readable
+        type: Protocol
+      - term: TCompactProtocol
+        definition: Compact binary protocol using variable-length integer encoding; smaller than TBinaryProtocol
+        type: Protocol
+      - term: TJSONProtocol
+        definition: JSON serialization protocol; human-readable and interoperable with web clients
+        type: Protocol
+      - term: TSimpleJSONProtocol
+        definition: Simplified JSON protocol for write-only use; not suitable for deserialization
+        type: Protocol
+      - term: TDebugProtocol
+        definition: Human-readable text protocol for debugging; not intended for production use
+        type: Protocol
+      - term: TMultiplexedProtocol
+        definition: Protocol that enables multiple services to share a single TCP connection using service name prefixing
+        type: Protocol
+
+  - name: Server Types
+    description: Server implementations for hosting Thrift services
+    terms:
+      - term: TSimpleServer
+        definition: Single-threaded server; handles one connection at a time; suitable for testing only
+        type: Server
+      - term: TThreadPoolServer
+        definition: Multi-threaded server using a thread pool; each connection is handled by a worker thread
+        type: Server
+      - term: TNonblockingServer
+        definition: Non-blocking server using Java NIO or libevent; high-performance and suitable for production
+        type: Server
+      - term: THsHaServer
+        definition: Half-sync/Half-async server; combines non-blocking I/O with a thread pool for request processing
+        type: Server
+      - term: TThreadedSelectorServer
+        definition: Multi-threaded selector server; the recommended production server for high-concurrency workloads
+        type: Server
+
+  - name: Code Generation
+    description: Concepts related to Thrift IDL compilation and code generation
+    terms:
+      - term: thrift compiler
+        definition: The command-line tool (thrift) that reads IDL files and generates language-specific client and server code
+        type: Tool
+      - term: IDL
+        definition: Interface Definition Language; the Thrift file format (.thrift) used to define data types and service interfaces
+        type: Concept
+      - term: generated code
+        definition: Language-specific source code produced by the Thrift compiler from .thrift IDL files
+        type: Concept
+      - term: skeleton
+        definition: A generated server-side implementation stub that the developer fills in with actual business logic
+        type: Concept
+      - term: processor
+        definition: A generated server-side class that dispatches incoming RPC calls to the appropriate handler methods
+        type: Concept
+      - term: client
+        definition: A generated client-side class providing typed methods that serialize arguments and send RPC requests
+        type: Concept

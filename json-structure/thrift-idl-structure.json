@@ -1,0 +1,105 @@
+{
+  "title": "Apache Thrift IDL Structure",
+  "description": "JSON structure documentation for Apache Thrift Interface Definition Language constructs",
+  "version": "0.23.0",
+  "created": "2026-05-03",
+  "structures": [
+    {
+      "name": "ThriftDocument",
+      "description": "The root document representing a complete .thrift IDL file",
+      "fields": [
+        { "name": "namespace", "type": "object<string,string>", "required": false, "description": "Language-to-namespace mappings, e.g. {\"java\": \"com.example\", \"py\": \"example\"}" },
+        { "name": "includes", "type": "array<string>", "required": false, "description": "List of included .thrift files" },
+        { "name": "constants", "type": "array<ThriftConst>", "required": false, "description": "Constant value declarations" },
+        { "name": "typedefs", "type": "array<ThriftTypedef>", "required": false, "description": "Type alias declarations" },
+        { "name": "enums", "type": "array<ThriftEnum>", "required": false, "description": "Enumeration type definitions" },
+        { "name": "structs", "type": "array<ThriftStruct>", "required": false, "description": "Struct type definitions" },
+        { "name": "unions", "type": "array<ThriftUnion>", "required": false, "description": "Union type definitions" },
+        { "name": "exceptions", "type": "array<ThriftException>", "required": false, "description": "Exception type definitions" },
+        { "name": "services", "type": "array<ThriftService>", "required": false, "description": "Service interface definitions" }
+      ]
+    },
+    {
+      "name": "ThriftStruct",
+      "description": "A composite data type grouping named fields",
+      "fields": [
+        { "name": "name", "type": "string", "required": true, "description": "Struct type name" },
+        { "name": "fields", "type": "array<ThriftField>", "required": true, "description": "Ordered list of struct fields" },
+        { "name": "annotations", "type": "object<string,string>", "required": false, "description": "Key-value annotation pairs" },
+        { "name": "comment", "type": "string", "required": false, "description": "Documentation comment" }
+      ]
+    },
+    {
+      "name": "ThriftField",
+      "description": "A named field within a struct, union, or exception",
+      "fields": [
+        { "name": "id", "type": "integer", "required": false, "description": "Numeric field identifier for versioning" },
+        { "name": "requiredness", "type": "string", "required": false, "description": "required | optional | default", "default": "default" },
+        { "name": "type", "type": "ThriftFieldType", "required": true, "description": "The field's data type" },
+        { "name": "name", "type": "string", "required": true, "description": "Field name" },
+        { "name": "default", "type": "any", "required": false, "description": "Default value" },
+        { "name": "annotations", "type": "object<string,string>", "required": false, "description": "Key-value annotation pairs" },
+        { "name": "comment", "type": "string", "required": false, "description": "Documentation comment" }
+      ]
+    },
+    {
+      "name": "ThriftService",
+      "description": "A service interface grouping RPC function definitions",
+      "fields": [
+        { "name": "name", "type": "string", "required": true, "description": "Service name" },
+        { "name": "extends", "type": "string", "required": false, "description": "Name of parent service to extend" },
+        { "name": "functions", "type": "array<ThriftFunction>", "required": true, "description": "List of RPC function definitions" },
+        { "name": "annotations", "type": "object<string,string>", "required": false, "description": "Key-value annotation pairs" },
+        { "name": "comment", "type": "string", "required": false, "description": "Documentation comment" }
+      ]
+    },
+    {
+      "name": "ThriftFunction",
+      "description": "An RPC function definition within a service",
+      "fields": [
+        { "name": "oneway", "type": "boolean", "required": false, "default": false, "description": "If true, fire-and-forget (no response)" },
+        { "name": "returnType", "type": "ThriftFieldType|void", "required": true, "description": "Return type of the function" },
+        { "name": "name", "type": "string", "required": true, "description": "Function name" },
+        { "name": "parameters", "type": "array<ThriftField>", "required": false, "description": "Input parameters" },
+        { "name": "throws", "type": "array<ThriftField>", "required": false, "description": "Exception types declared in throws clause" },
+        { "name": "comment", "type": "string", "required": false, "description": "Documentation comment" }
+      ]
+    },
+    {
+      "name": "ThriftEnum",
+      "description": "A named enumeration of integer constants",
+      "fields": [
+        { "name": "name", "type": "string", "required": true, "description": "Enum type name" },
+        { "name": "values", "type": "array<ThriftEnumValue>", "required": true, "description": "List of named enum values" },
+        { "name": "comment", "type": "string", "required": false, "description": "Documentation comment" }
+      ]
+    },
+    {
+      "name": "ThriftEnumValue",
+      "description": "A single value within a Thrift enum",
+      "fields": [
+        { "name": "name", "type": "string", "required": true, "description": "Enum value name" },
+        { "name": "value", "type": "integer", "required": false, "description": "Explicit integer value; auto-increments if omitted" },
+        { "name": "comment", "type": "string", "required": false, "description": "Documentation comment" }
+      ]
+    },
+    {
+      "name": "ThriftException",
+      "description": "An exception type for use in service throws clauses",
+      "fields": [
+        { "name": "name", "type": "string", "required": true, "description": "Exception type name" },
+        { "name": "fields", "type": "array<ThriftField>", "required": true, "description": "Fields describing the exception details" },
+        { "name": "comment", "type": "string", "required": false, "description": "Documentation comment" }
+      ]
+    },
+    {
+      "name": "ThriftUnion",
+      "description": "A union type where exactly one field is set at a time",
+      "fields": [
+        { "name": "name", "type": "string", "required": true, "description": "Union type name" },
+        { "name": "fields", "type": "array<ThriftField>", "required": true, "description": "List of possible fields (exactly one active at runtime)" },
+        { "name": "comment", "type": "string", "required": false, "description": "Documentation comment" }
+      ]
+    }
+  ]
+}

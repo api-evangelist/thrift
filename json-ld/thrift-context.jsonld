@@ -1,0 +1,123 @@
+{
+  "@context": {
+    "@vocab": "https://thrift.apache.org/vocab#",
+    "schema": "https://schema.org/",
+    "xsd": "http://www.w3.org/2001/XMLSchema#",
+    "rdfs": "http://www.w3.org/2000/01/rdf-schema#",
+    "thrift": "https://thrift.apache.org/vocab#",
+
+    "ThriftService": {
+      "@id": "thrift:ThriftService",
+      "@type": "@id",
+      "rdfs:comment": "A Thrift service interface definition"
+    },
+    "ThriftStruct": {
+      "@id": "thrift:ThriftStruct",
+      "@type": "@id",
+      "rdfs:comment": "A Thrift struct type definition"
+    },
+    "ThriftEnum": {
+      "@id": "thrift:ThriftEnum",
+      "@type": "@id",
+      "rdfs:comment": "A Thrift enum type definition"
+    },
+    "ThriftException": {
+      "@id": "thrift:ThriftException",
+      "@type": "@id",
+      "rdfs:comment": "A Thrift exception type definition"
+    },
+    "ThriftUnion": {
+      "@id": "thrift:ThriftUnion",
+      "@type": "@id",
+      "rdfs:comment": "A Thrift union type definition"
+    },
+    "ThriftFunction": {
+      "@id": "thrift:ThriftFunction",
+      "@type": "@id",
+      "rdfs:comment": "A function definition within a Thrift service"
+    },
+    "ThriftField": {
+      "@id": "thrift:ThriftField",
+      "@type": "@id",
+      "rdfs:comment": "A field within a Thrift struct, union, or exception"
+    },
+
+    "name": "schema:name",
+    "description": "schema:description",
+    "version": "schema:version",
+    "namespace": "thrift:namespace",
+    "language": "thrift:language",
+    "transport": "thrift:transport",
+    "protocol": "thrift:protocol",
+    "server": "thrift:server",
+    "isOneway": {
+      "@id": "thrift:isOneway",
+      "@type": "xsd:boolean"
+    },
+    "fieldId": {
+      "@id": "thrift:fieldId",
+      "@type": "xsd:integer"
+    },
+    "requiredness": "thrift:requiredness",
+    "fieldType": "thrift:fieldType",
+    "returnType": "thrift:returnType",
+    "throws": "thrift:throws",
+    "extends": "thrift:extends",
+    "enumValue": {
+      "@id": "thrift:enumValue",
+      "@type": "xsd:integer"
+    },
+    "functions": {
+      "@id": "thrift:hasFunctions",
+      "@container": "@list"
+    },
+    "fields": {
+      "@id": "thrift:hasFields",
+      "@container": "@list"
+    },
+    "parameters": {
+      "@id": "thrift:hasParameters",
+      "@container": "@list"
+    },
+    "values": {
+      "@id": "thrift:hasValues",
+      "@container": "@list"
+    },
+
+    "baseTypes": {
+      "@id": "thrift:baseTypes",
+      "@container": "@set"
+    },
+    "bool": "thrift:TypeBool",
+    "byte": "thrift:TypeByte",
+    "i8": "thrift:TypeI8",
+    "i16": "thrift:TypeI16",
+    "i32": "thrift:TypeI32",
+    "i64": "thrift:TypeI64",
+    "double": "thrift:TypeDouble",
+    "string": "thrift:TypeString",
+    "binary": "thrift:TypeBinary",
+    "uuid": "thrift:TypeUUID",
+    "list": "thrift:TypeList",
+    "set": "thrift:TypeSet",
+    "map": "thrift:TypeMap",
+
+    "TBinaryProtocol": "thrift:ProtocolBinary",
+    "TCompactProtocol": "thrift:ProtocolCompact",
+    "TJSONProtocol": "thrift:ProtocolJSON",
+    "TSocket": "thrift:TransportSocket",
+    "TFramedTransport": "thrift:TransportFramed",
+    "TBufferedTransport": "thrift:TransportBuffered",
+    "THttpClient": "thrift:TransportHTTPClient",
+    "TSimpleServer": "thrift:ServerSimple",
+    "TThreadPoolServer": "thrift:ServerThreadPool",
+    "TNonblockingServer": "thrift:ServerNonblocking",
+
+    "softwareVersion": "schema:softwareVersion",
+    "programmingLanguage": "schema:programmingLanguage",
+    "license": "schema:license",
+    "codeRepository": "schema:codeRepository",
+    "downloadUrl": "schema:downloadUrl",
+    "releaseDate": "schema:releaseDate"
+  }
+}
