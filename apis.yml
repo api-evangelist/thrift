@@ -52,7 +52,7 @@ apis:
     properties:
       - type: Documentation
         url: https://thrift.apache.org/docs/
-      - type: Getting Started
+      - type: GettingStarted
         url: https://thrift.apache.org/tutorial/
       - type: Download
         url: https://thrift.apache.org/download
@@ -70,7 +70,7 @@ apis:
         url: https://packagist.org/packages/apache/thrift
       - type: PyPI
         url: https://pypi.org/project/thrift/
-      - type: Changelog
+      - type: ChangeLog
         url: https://github.com/apache/thrift/blob/master/CHANGES.md
       - type: JSONSchema
         url: https://raw.githubusercontent.com/api-evangelist/thrift/refs/heads/main/json-schema/thrift-idl-schema.json
@@ -90,7 +90,7 @@ common:
     url: https://thrift.apache.org/
   - type: Documentation
     url: https://thrift.apache.org/docs/
-  - type: GitHub Organization
+  - type: GitHubOrganization
     url: https://github.com/apache/thrift
   - type: Mailing List
     url: https://thrift.apache.org/mailing
