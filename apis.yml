@@ -86,6 +86,10 @@ apis:
         email: dev@thrift.apache.org
     version: 0.23.0
 common:
+  - type: VulnerabilityDisclosure
+    url: security/thrift-vulnerability-disclosure.yml
+  - type: DomainSecurity
+    url: security/thrift-domain-security.yml
   - type: Website
     url: https://thrift.apache.org/
   - type: Documentation
