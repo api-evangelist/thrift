@@ -12,15 +12,20 @@ description: >-
   communication.
 type: Index
 deliveryModel:
-  model: unknown
-  open_source: false
+  model: self-hosted
+  license: Apache-2.0
+  license_evidence:
+    repo: apache/thrift
+    spdx: Apache-2.0
+    stars: 10960
+  open_source: true
   commercial: false
   callable_host: false
-  label: Delivery model not determined — needs a product licence on record
-  confidence: low
+  label: Self-hosted open source · you run it yourself
+  confidence: medium
   source:
-  - none
-  generated: '2026-08-28'
+  - repository-license
+  generated: '2026-09-25'
   method: derived
 accessModel:
   pricing: freemium
@@ -39,7 +44,7 @@ tags:
   - Apache
   - Code Generation
   - Cross-Language
-  - Open-Source
+  - Open Source
   - RPC
   - SDK
   - Serialization
@@ -53,6 +58,7 @@ tags_raw:
   - SDKs
   - Serialization
   - Thrift
+  - Open-Source
 url: >-
   https://raw.githubusercontent.com/api-evangelist/thrift/refs/heads/main/apis.yml
 created: '2026-03-27'
@@ -71,13 +77,12 @@ apis:
       non-atomic version changes and is widely used for building high-performance
       cross-language microservices.
     humanURL: https://thrift.apache.org/
-    baseURL: https://thrift.apache.org/
     tags:
       - Apache
       - Code Generation
       - Cross-Language
       - IDL
-      - Open-Source
+      - Open Source
       - RPC
       - SDK
       - Serialization
@@ -90,6 +95,7 @@ apis:
       - RPC
       - SDKs
       - Serialization
+      - Open-Source
     properties:
       - type: Documentation
         url: https://thrift.apache.org/docs/
