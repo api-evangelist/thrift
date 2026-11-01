@@ -66,69 +66,139 @@
 
 Apache Thrift is a cross-language RPC framework originally developed at Facebook for scalable cross-language services development. It provides a lightweight, language-independent software stack for point-to-point RPC implementation with clean abstractions for data transport, serialization, and application-level processing. The framework includes an Interface Definition Language (IDL) compiler that generates client and server code for 28+ programming languages including C++, Java, Python, Go, Ruby, PHP, Node.js, C#, and many others, enabling seamless cross-language service communication.
 
-- **Human URL:** [https://thrift.apache.org/](https://thrift.apache.org/)
-- **GitHub:** [https://github.com/apache/thrift](https://github.com/apache/thrift)
-- **Version:** 0.23.0
+**Areas:** Apache · Code Generation · Cross-Language · Open Source · RPC · SDK · Serialization · Thrift
 
-## Description
+## Apache Thrift on APIs.io
 
-Apache Thrift is a lightweight, language-independent software stack for point-to-point RPC implementation. It provides abstractions for data transport, serialization, and application-level processing with a code generation engine that produces client and server code for 28+ programming languages from a simple Interface Definition Language (IDL) definition. Thrift supports backward and forward compatibility through non-atomic version changes and is widely used for building high-performance cross-language microservices.
+Everything profiled for Apache Thrift is published on APIs.io rather than in this repository. Start at the provider page — **[apis.io/providers/thrift/](https://apis.io/providers/thrift/)** — or go straight to one of the APIs or properties below.
 
-## Links
+### APIs (1)
 
+- [Apache Thrift](https://apis.io/apis/thrift/thrift/) — Apache Thrift is a lightweight, language-independent software stack for point-to-point RPC implementation. It provides abstractions for data transport,…
+
+### Published properties
+
+Each property below is a page on APIs.io carrying the machine-readable artifact and what it says.
+
+#### JSON Schema (1)
+
+The data models the API reads and writes.
+
+- [Apache Thrift IDL Definition](https://apis.io/schemas/thrift/thrift-idl/)
+
+#### JSON Structure (1)
+
+Data models expressed in JSON Structure.
+
+- [Thrift Idl Structure](https://apis.io/json-structure/thrift/thrift-idl-structure/)
+
+#### JSON-LD (1)
+
+Linked-data contexts for the provider's vocabulary.
+
+- [Thrift Context](https://apis.io/jsonld/thrift/thrift-context/)
+
+#### Vocabulary (1)
+
+The provider's domain terms, defined.
+
+- [Apache Thrift Vocabulary](https://apis.io/vocabularies/thrift/thrift-vocabulary/)
+
+#### Examples (2)
+
+Example requests and responses.
+
+- [Thrift Calculator Service Example](https://apis.io/examples/thrift/thrift-calculator-service-example/)
+- [Thrift Client Server Example](https://apis.io/examples/thrift/thrift-client-server-example/)
+
+#### Governance rules (1)
+
+Spectral rulesets for the provider's contracts.
+
+- [Apache Thrift — jsonschema rules](https://apis.io/rules/thrift/thrift-jsonschema-spectral-rules/)
+
+#### Security (2)
+
+Authentication, trust centre, and vulnerability disclosure.
+
+- [Thrift Domain Security](https://apis.io/security/thrift/thrift-domain-security/)
+- [Thrift Vulnerability Disclosure](https://apis.io/security/thrift/thrift-vulnerability-disclosure/)
+
+#### Plans and pricing (1)
+
+Published plans, tiers and prices.
+
+- [Thrift Plans Pricing](https://apis.io/plans/thrift/thrift-plans-pricing/)
+
+#### Rate limits (1)
+
+Published request limits.
+
+- [Thrift Rate Limits](https://apis.io/rate-limits/thrift/thrift-rate-limits/)
+
+#### FinOps (1)
+
+What the API costs to run, by operation.
+
+- [Thrift Finops](https://apis.io/finops/thrift/thrift-finops/)
+
+## Where to find this API
+
+Links to the company's own pages. This repository publishes no copy of their specifications — the canonical document is theirs and lives at the URLs below.
+
+- [Website](https://thrift.apache.org/)
 - [Documentation](https://thrift.apache.org/docs/)
-- [Getting Started](https://thrift.apache.org/tutorial/)
-- [Download](https://thrift.apache.org/download)
-- [IDL Specification](https://thrift.apache.org/docs/idl)
-- [Language Support](https://thrift.apache.org/docs/Languages)
-- [Changelog](https://github.com/apache/thrift/blob/master/CHANGES.md)
-- [Mailing List](https://thrift.apache.org/mailing)
-- [Issue Tracker](https://issues.apache.org/jira/projects/THRIFT)
+- [GitHub](https://github.com/apache/thrift)
 
-## Packages
+## API Evangelist rating
 
-- [npm](https://www.npmjs.com/package/thrift)
-- [Maven (libthrift)](https://mvnrepository.com/artifact/org.apache.thrift/libthrift)
-- [PyPI](https://pypi.org/project/thrift/)
-- [Packagist](https://packagist.org/packages/apache/thrift)
+**Kin Score 23.5** — emerging · rubric 0.24.0 · scored 2026-10-17
 
-## Artifacts
+| Facet | Score |
+|---|---|
+| Discoverability | 57.1 |
+| Contract quality | 21.9 |
+| Contract governance | 23.5 |
+| Operational transparency | 26.3 |
+| Developer ergonomics | 21.4 |
+| Access clarity | 7.9 |
 
-### JSON Schema
+**Agent readiness 0.6** — human-only
 
-| File | Description |
-|------|-------------|
-| [thrift-idl-schema.json](json-schema/thrift-idl-schema.json) | JSON Schema for Apache Thrift IDL definitions covering structs, services, enums, exceptions, unions, and all IDL constructs |
+| Agent-readiness dimension | Result |
+|---|---|
+| Spec Presence | — |
+| Agentic Access | — |
+| Reversibility Documented | — |
+| MCP Server | — |
+| Auth Clarity | — |
+| Idempotency | — |
+| Error Semantics | — |
+| OpenAPI Examples | — |
+| Rate Limit Signal | derived (partial credit) |
+| Event Surface Described | — |
+| Agent Skills | — |
+| Well Known Catalog | — |
+| Consent Identity | — |
+| Agent Card | — |
+| Dry Run Mode | — |
+| Delegated Identity | — |
+| Protected Resource Metadata | — |
+| Dynamic Client Registration | — |
+| Agentic Commerce | — |
 
-### JSON Structure
+**Regulatory alignment 16.7** — Horizontal (data, software, accessibility, platform)
 
-| File | Description |
-|------|-------------|
-| [thrift-idl-structure.json](json-structure/thrift-idl-structure.json) | Structured documentation of all Apache Thrift IDL entity types and their fields |
+The rubric is published at [github.com/api-evangelist/kin-score](https://github.com/api-evangelist/kin-score). The per-check breakdown behind these numbers — which checks were earned, partial or missed — along with score history and how this provider compares to its peers, is available at [apis.io/providers/thrift/](https://apis.io/providers/thrift/).
 
-### JSON-LD Context
+## How this profile is made
 
-| File | Description |
-|------|-------------|
-| [thrift-context.jsonld](json-ld/thrift-context.jsonld) | JSON-LD context mapping Thrift IDL vocabulary to linked data semantics |
+API Evangelist profiles a company's public API surface the way a developer would find it: the website, developer portal and documentation, the specifications it publishes, its public repositories, and its pricing, status and changelog pages. From that it derives the properties above — contracts split per API, workflows, schemas, collections, governance rules, plans and rate limits — and scores them against the published [Kin Score rubric](https://github.com/api-evangelist/kin-score).
 
-### Examples
+The artifacts are published on [APIs.io](https://apis.io), not in this repository. This repository is the public record for Apache Thrift: the place to say something is wrong, missing or out of date, and to ask for a re-score or a removal.
 
-| File | Description |
-|------|-------------|
-| [thrift-calculator-service-example.json](examples/thrift-calculator-service-example.json) | Complete example of the classic Calculator service IDL in JSON representation |
-| [thrift-client-server-example.json](examples/thrift-client-server-example.json) | Examples of client/server configuration for multiple languages with transport and protocol options |
+## Open an issue
 
-### Vocabulary
-
-| File | Description |
-|------|-------------|
-| [thrift-vocabulary.yml](vocabulary/thrift-vocabulary.yml) | Normative vocabulary for Apache Thrift covering IDL types, transports, protocols, servers, and code generation concepts |
-
-## Supported Languages
-
-C, C++, C#, Common Lisp, D, Dart, Delphi, Erlang, Go, Haxe, Java, JavaScript, Lua, Node.js, .NET Standard, OCaml, Perl, PHP, Python, Ruby, Rust, Smalltalk, Swift
-
-## Tags
-
-Apache, Code Generation, Cross Language, IDL, Open Source, RPC, SDKs, Serialization, Thrift
+- **Something about this listing** — a wrong description, a missing API, a stale artifact or a question about the rating: [open an issue on this repository](https://github.com/api-evangelist/thrift/issues/new).
+- **A new API, or one that is not in the catalog yet** — [submit it on APIs.io](https://apis.io/add/).
+- **Anything else** — [the APIs.io inbox](https://github.com/api-search/inbox/issues/new) or [info@apievangelist.com](mailto:info@apievangelist.com).
